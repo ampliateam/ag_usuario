@@ -19,7 +19,7 @@ validarEnvs();
 
 // Verifica si corre con docker (la verificacion es ideal para entorno "dev")
 let dockerPortInterno = envs.dockerPortInterno;
-if (envs.environment === 'local_development') {
+if (envs.environment === 'personal') {
   const correConDocker = verificarSiCorreConDocker();
   console.info('Esta corriendo con docker:', correConDocker);
 

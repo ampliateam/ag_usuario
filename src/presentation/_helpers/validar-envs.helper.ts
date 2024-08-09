@@ -8,7 +8,7 @@ export const validarEnvs = () => {
     }
     
     // Verificar PORTs de Docker (cuando es un entorno de remoto)
-    if (envs.environment !== 'local_development' && (!envs.dockerPortExterno || !envs.dockerPortInterno)) {
+    if (envs.environment !== 'personal' && (!envs.dockerPortExterno || !envs.dockerPortInterno)) {
         throw new Error('PORT de Docker inválido: Es necesario tener un PORT externo e interno');
     }
     

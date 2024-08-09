@@ -7,7 +7,7 @@ import { envs } from '@global/configs/envs';
 const dirConfigCredentialsFirebase = join(process.cwd(), 'src/global/configs/credentials/firebase');
 
 let filePath = '';
-if (envs.environment === 'local_development') 
+if (envs.environment === 'personal') 
   filePath = join(dirConfigCredentialsFirebase, '/firebase-admin-personal.json');
 else if (envs.environment === 'development') 
   filePath = join(dirConfigCredentialsFirebase, '/firebase-admin-dev.json');
@@ -23,7 +23,7 @@ firebaseAdmin.initializeApp({
   credential: firebaseAdmin.credential.cert(JSON.parse(firebaseAdminCredentials))
 });
 
-if (envs.environment === 'local_development') 
+if (envs.environment === 'personal') 
   console.info('Firebase connected!');
 
 export default firebaseAdmin;

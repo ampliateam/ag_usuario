@@ -1,2 +1,2 @@
-export type TOlvideMiContrasenaEstado = 'local_development' | 'development' | 'testing' | 'production';
-export const listaOlvideMiContrasenaEstado = ['local_development', 'development', 'testing', 'production'];
+export type TOlvideMiContrasenaEstado = 'personal' | 'development' | 'testing' | 'production';
+export const listaOlvideMiContrasenaEstado = ['personal', 'development', 'testing', 'production'];
