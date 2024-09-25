@@ -1,4 +1,4 @@
-import { generarErrorCapaDomain } from "@domain/_helpers/errors";
+import { generarErrorCapaDomain } from '@domain/_helpers/errors';
 
 export const manejadorDeErrorFirebaseAuthentication = (error) => {
     const respuesta = manejadorDeError(error);

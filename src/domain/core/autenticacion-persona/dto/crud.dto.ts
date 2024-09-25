@@ -1,7 +1,7 @@
 export interface BuscarAutenticacionPersonaDTO {
     uid?: string;
     correo?: string;
-}
+};
 
 export interface ActualizarAutenticacionPersonaDTO {
     buscarPor: BuscarAutenticacionPersonaDTO;
@@ -10,9 +10,9 @@ export interface ActualizarAutenticacionPersonaDTO {
         correoVerificado?: boolean;
         deshabilitado?: boolean;
         contrasena?: string;
-    }
-}
+    };
+};
 
 export interface EliminarAutenticacionPersonaDTO {
     buscarPor: BuscarAutenticacionPersonaDTO;
-}
+};

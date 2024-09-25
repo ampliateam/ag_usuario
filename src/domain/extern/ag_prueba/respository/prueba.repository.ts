@@ -1,3 +1,3 @@
-import { PruebaDTO } from "../dto";
+import { PruebaDTO } from '../dto';
 
 export const prueba = (dto: PruebaDTO) => dto.texto;

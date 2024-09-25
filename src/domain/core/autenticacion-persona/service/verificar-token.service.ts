@@ -1,6 +1,6 @@
-import { ITokenDecodificadoPersona } from "@global/models/interfaces";
-import * as autenticacionPersonaRepository from '../repository';
+import { ITokenDecodificadoPersona } from '@global/models/interfaces';
+import * as repository from '../repository/firebase-authentication';
 
 export const verificarToken = async (token: string): Promise<ITokenDecodificadoPersona> => {
-    return await autenticacionPersonaRepository.firebaseAuthentication.verificarToken(token);
-}
+    return await repository.verificarToken(token);
+};

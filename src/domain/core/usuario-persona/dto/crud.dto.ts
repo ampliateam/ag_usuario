@@ -1,19 +1,19 @@
-import { IUsuarioPersona, IUsuarioPersonaOpcional } from "@global/models/interfaces";
+import { IUsuarioPersonaOpcional } from '@global/models/interfaces';
 
 export interface CrearUsuarioPersonaDTO {
-    usuario: IUsuarioPersona;
-}
+    usuario: IUsuarioPersonaOpcional;
+};
 
 export interface BuscarUsuarioPersonaDTO {
     uid?: string;
     correo?: string;
     codigo?: string;
-}
+};
 
 export interface ActualizarUsuarioPersonaDTO {
     buscarPor: BuscarUsuarioPersonaDTO;
     actualizado: IUsuarioPersonaOpcional;
-}
+};
 
 export interface EliminarUsuarioPersonaDTO {
     buscarPor: BuscarUsuarioPersonaDTO;

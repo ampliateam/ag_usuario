@@ -1,4 +1,4 @@
-import { IErrorCapaDomain } from "./interfaces";
+import { IErrorCapaDomain } from './interfaces';
 
 export class ErrorCapaDomain extends Error implements IErrorCapaDomain {
     public estado: number;

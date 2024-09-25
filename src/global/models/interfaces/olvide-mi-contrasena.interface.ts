@@ -1,17 +1,17 @@
-import { TOlvideMiContrasenaEstado } from "@global/models/types";
+import { TOlvideMiContrasenaEstado } from '@global/models/types';
 
 export interface IOlvideMiContrasena {
-  uid: string;
+  id: string;
   uidUsuario: string;
   token: string;
   estado: TOlvideMiContrasenaEstado;
-  fechaCreacion: string;
-}
+  fechaCreacion: Date;
+};
 
 export interface IOlvideMiContrasenaOpcional {
-  uid?: string;
+  id?: string;
   uidUsuario?: string;
   token?: string;
   estado?: TOlvideMiContrasenaEstado;
-  fechaCreacion?: string;
-}
+  fechaCreacion?: Date;
+};

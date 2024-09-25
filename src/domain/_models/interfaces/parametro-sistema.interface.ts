@@ -1,5 +1,5 @@
 export interface IParametroSistema {
-    uid: string,
+    id: string,
     parametroBusqueda: string,
     valor: string,
     observacion: string,
