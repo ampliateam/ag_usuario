@@ -1,4 +1,4 @@
-import { IFechaActividad } from "@global/models/interfaces";
+import { IFechaActividad } from '@global/models/interfaces';
 
 export interface CrearAutenticacionExternoDTO {
     codigo: string;

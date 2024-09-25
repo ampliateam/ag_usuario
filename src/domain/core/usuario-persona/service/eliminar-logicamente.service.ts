@@ -1,6 +1,6 @@
-import { IUsuarioPersona } from "@global/models/interfaces";
-import { EliminarUsuarioPersonaDTO } from "../dto";
-import { cloudFirestore } from "../repository";
+import { IUsuarioPersona } from '@global/models/interfaces';
+import { EliminarUsuarioPersonaDTO } from '../dto';
+import { cloudFirestore } from '../repository';
 
 export const eliminarLogicamente = async (dto: EliminarUsuarioPersonaDTO): Promise<IUsuarioPersona> => {
     return await cloudFirestore.crud.actualizar({
@@ -10,4 +10,4 @@ export const eliminarLogicamente = async (dto: EliminarUsuarioPersonaDTO): Promi
             fechaEliminacion: dto.fechaEliminacion
         }
     });
-}
+};

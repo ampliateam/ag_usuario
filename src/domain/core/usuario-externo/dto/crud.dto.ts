@@ -1,5 +1,5 @@
-import { IUsuarioExterno } from "@global/models/interfaces";
-import { TUsuarioEstado, TUsuarioExternoRol } from "@global/models/types";
+import { IUsuarioExterno } from '@global/models/interfaces';
+import { TUsuarioEstado, TUsuarioExternoRol } from '@global/models/types';
 
 export interface CrearUsuarioExternoDTO {
     usuario: IUsuarioExterno;

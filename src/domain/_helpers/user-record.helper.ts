@@ -1,5 +1,5 @@
-import { UserRecord } from "firebase-admin/auth";
-import { IAutenticacionPersona } from "@global/models/interfaces";
+import { UserRecord } from 'firebase-admin/auth';
+import { IAutenticacionPersona } from '@global/models/interfaces';
 
 export const userRecordToAutenticacionPersona = (userRecord: UserRecord): IAutenticacionPersona => {
     if (!userRecord) return null;

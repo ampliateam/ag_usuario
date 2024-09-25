@@ -4,7 +4,7 @@ import {
     CrearUsuarioExternoDTO,
     EliminarUsuarioExternoDTO,
     BuscarUsuarioExternoDTO
-} from "../../dto";
+} from '../../dto';
 
 export const crear = async (dto: CrearUsuarioExternoDTO): Promise<IUsuarioExterno> => {
     const usuarioExterno: IUsuarioExterno = null;

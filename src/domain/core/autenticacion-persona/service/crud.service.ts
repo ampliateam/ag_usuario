@@ -3,17 +3,17 @@ import {
     ActualizarAutenticacionPersonaDTO,
     EliminarAutenticacionPersonaDTO,
     BuscarAutenticacionPersonaDTO
-} from "../dto";
-import * as autenticacionPersonaRepository from '../repository';
+} from '../dto';
+import * as repository from '../repository/firebase-authentication';
 
 export const obtener = async (dto: BuscarAutenticacionPersonaDTO): Promise<IAutenticacionPersona> => {
-    return await autenticacionPersonaRepository.firebaseAuthentication.crud.obtener(dto);
-}
+    return await repository.crud.obtener(dto);
+};
 
 export const actualizar = async (dto: ActualizarAutenticacionPersonaDTO): Promise<IAutenticacionPersona> => {
-    return await autenticacionPersonaRepository.firebaseAuthentication.crud.actualizar(dto);
-}
+    return await repository.crud.actualizar(dto);
+};
 
 export const eliminar = async (dto: EliminarAutenticacionPersonaDTO): Promise<IAutenticacionPersona> => {
-    return await autenticacionPersonaRepository.firebaseAuthentication.crud.eliminar(dto);
-}
+    return await repository.crud.eliminar(dto);
+};
