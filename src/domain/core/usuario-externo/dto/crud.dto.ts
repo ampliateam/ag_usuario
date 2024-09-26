@@ -1,8 +1,7 @@
-import { IUsuarioExterno } from '@global/models/interfaces';
-import { TUsuarioEstado, TUsuarioExternoRol } from '@global/models/types';
+import { IUsuarioExternoOpcional } from '@global/models/interfaces';
 
 export interface CrearUsuarioExternoDTO {
-    usuario: IUsuarioExterno;
+    usuario: IUsuarioExternoOpcional;
 }
 
 export interface BuscarUsuarioExternoDTO {
@@ -11,16 +10,7 @@ export interface BuscarUsuarioExternoDTO {
 
 export interface ActualizarUsuarioExternoDTO {
     buscarPor: BuscarUsuarioExternoDTO;
-    actualizado: {
-        codigo?: string;
-        observacion?: string;
-        correo?: string;
-        telefono?: string;
-        rol?: TUsuarioExternoRol[];
-        estado?: TUsuarioEstado;
-        fechaCreacion?: number;
-        fechaEliminacion?: number;
-    }
+    actualizado: IUsuarioExternoOpcional;
 }
 
 export interface EliminarUsuarioExternoDTO {
