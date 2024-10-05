@@ -1,4 +1,4 @@
-import { IAutenticacionPersona } from '@global/models/interfaces'
+import { IAutenticacionPersona } from '@global/models/ag_usuario'
 import {
     ActualizarAutenticacionPersonaDTO,
     EliminarAutenticacionPersonaDTO,

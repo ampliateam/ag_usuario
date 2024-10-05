@@ -1,8 +1,7 @@
-import { IAutenticacionExterno } from '@global/models/interfaces';
+import { IAutenticacionExterno } from '@global/models/ag_usuario';
 import {
     ActualizarAutenticacionExternoDTO,
     CrearAutenticacionExternoDTO,
-    EliminarAutenticacionExternoDTO,
     BuscarAutenticacionExternoDTO
 } from '../../dto';
 
@@ -17,11 +16,6 @@ export const obtener = async (dto: BuscarAutenticacionExternoDTO): Promise<IAute
 }
 
 export const actualizar = async (dto: ActualizarAutenticacionExternoDTO): Promise<IAutenticacionExterno> => {
-    const autenticacionExterno: IAutenticacionExterno = null;
-    return autenticacionExterno;
-}
-
-export const eliminar = async (dto: EliminarAutenticacionExternoDTO): Promise<IAutenticacionExterno> => {
     const autenticacionExterno: IAutenticacionExterno = null;
     return autenticacionExterno;
 }
