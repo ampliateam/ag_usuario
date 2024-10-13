@@ -13,7 +13,7 @@ import {
 import {
   inicializacion,
   mwManejadorDeError
-} from '@presentation/middlewares';
+} from '@presentation/_middlewares';
 
 // Validacion de envs
 validarEnvs();
@@ -30,7 +30,7 @@ if (envs.environment === 'personal') {
 
 // Inicializacion de middlewares
 const app = express();
-const origin = [''];
+const origin = '*';
 app.use(cors({
   credentials: true,
   origin,

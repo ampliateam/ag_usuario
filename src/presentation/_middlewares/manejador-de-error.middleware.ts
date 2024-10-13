@@ -13,6 +13,8 @@ export const mwManejadorDeError = (error: any, req: Request, res: Response, next
 };
 
 const manejadorDeError = (error: any): { status: number, data: IRespuestaServidor } => {
+  if (envs.environment === 'personal') console.log('manejadorDeError: ', error);
+
   let status = 500;
   let respuestaServidor: IRespuestaServidorOpcional;
 

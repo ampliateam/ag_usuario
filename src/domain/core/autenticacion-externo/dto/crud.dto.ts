@@ -7,7 +7,6 @@ export interface CrearAutenticacionExternoDTO {
 export interface BuscarAutenticacionExternoDTO {
   uid?: string;
   clavePublica?: string;
-  clavePrivada?: string;
 }
 
 export interface ActualizarAutenticacionExternoDTO {

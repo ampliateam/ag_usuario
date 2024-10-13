@@ -3,7 +3,7 @@ import { IPresentationSolicitante } from '@presentation/_models/interfaces';
 interface Personalizado {
   momentoSolicitud?: Date;
   presentationSolicitante?: IPresentationSolicitante;
-  // [key: string]: any;
+  extra?: { [key: string]: any };
 };
 
 declare global {

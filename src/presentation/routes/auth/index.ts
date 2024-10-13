@@ -1,35 +1,19 @@
-import { generarRespuestaServidor } from '@presentation/_helpers';
-import { mwVerificarPS } from '@presentation/middlewares';
 import { Router } from 'express';
+import * as auth from '@presentation/endpoints/auth';
+import { mwVerificarPS } from '@presentation/_middlewares';
 
 const router = Router();
 
-router.post('/verificar-persona',
+// Verifica las credenciales-persona de un usuario
+router.post('/verificar-persona', [
   mwVerificarPS({ tps: ['persona'] }),
-  (req, res, next) => {
-    try {
-      const respuestaServidor = generarRespuestaServidor({
-        exito: true,
-        mensaje: 'Persona verificada con exito.',
-        resultado: req.personalizado.presentationSolicitante,
-      });
+  ...auth.verificarPersona.list
+]);
 
-      res.json(respuestaServidor);
-    } catch (error) {
-      next(error);
-    }
-  }
-);
-
+// Verifica las credenciales-externo de un usuario
 router.post('/verificar-externo',
   mwVerificarPS({ tps: ['externo'] }),
-  (req, res, next) => {
-    try {
-      res.json(req.personalizado.presentationSolicitante)
-    } catch (error) {
-      next(error);
-    }
-  }
+  ...auth.verificarExterno.list
 );
 
 export default router;

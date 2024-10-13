@@ -1,1 +1,1 @@
-export * as algo from './algo';
+export * as algo from './cloud-firestore';

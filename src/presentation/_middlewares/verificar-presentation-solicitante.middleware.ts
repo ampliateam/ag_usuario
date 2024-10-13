@@ -18,22 +18,35 @@ export const mwVerificarPS = (config: IConfigVerificarPresentationSolicitante = 
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
       let tipoPS: TPresentationSolicitanteTipo = 'desconocido';
-      let idToken = '';
+      const dataAuth: any = {};
+
+      // Datos de un `usuario-externo`
+      const publicKey = req.header('X-Public-Key');
+      const timestamp = req.header('X-Timestamp');
+      const signature = req.header('X-Signature');
+      
+      // Datos de un `usuario-persona`
       const authorization: string = req.headers['authorization'] as string;
-      const idTokenConTipo = authorization && authorization.split(' ')[0] === 'Bearer'
+      const idToken = authorization && authorization.split(' ')[0] === 'Bearer'
         ? authorization.split(' ')[1]
         : '';
 
-      if (idTokenConTipo) {
-        const esExterno = idTokenConTipo.startsWith('externo:');
+      // Constantes de verificacion de tipo de solicitud
+      const esExterno = publicKey && timestamp && signature;
+      const esPersona = !!idToken;
 
-        // Seleccionar el tipo de PresentationSolicitante
-        tipoPS = !esExterno ? 'persona' : 'externo';
-        
-        // Obtener el idToken
-        idToken = esExterno
-        ? idTokenConTipo.substring(8)
-        : idTokenConTipo;
+      if (esExterno) {
+        tipoPS = 'externo';
+
+        // Carga los datos para realizar la verificacion del usuario
+        dataAuth.publicKey = publicKey;
+        dataAuth.timestamp = +timestamp;
+        dataAuth.signature = signature;
+      } else if (esPersona) {
+        tipoPS = 'persona';
+
+        // Carga los datos para realizar la verificacion del usuario
+        dataAuth.token = idToken;        
       }
 
       // Verificar TSP
@@ -50,23 +63,27 @@ export const mwVerificarPS = (config: IConfigVerificarPresentationSolicitante = 
       // Verificar token del solicitante
       const {
         usuario,
-        tokenDecodificadoPersona,
-        tokenDecodificadoExterno,
         autenticacionPersona,
         autenticacionExterno,
-      } = await verificarPresentationSolicitante(tipoPS, idToken);
+      } = await verificarPresentationSolicitante(tipoPS, dataAuth);
+
+      req.personalizado.presentationSolicitante.tipo = tipoPS;
+      req.personalizado.presentationSolicitante.usuario = usuario;
 
       // Construccion del solicitante
       if (tipoPS !== 'desconocido') {
-        req.personalizado.presentationSolicitante.tipo = tipoPS;
-        req.personalizado.presentationSolicitante.token = idToken;
-        req.personalizado.presentationSolicitante.usuario = {
-          datos: usuario,
-          autenticacionPersona,
-          autenticacionExterno,
-          tokenDecodificadoPersona,
-          tokenDecodificadoExterno,
-        };
+        tipoPS === 'persona' ? req.personalizado.presentationSolicitante.persona = {
+          autenticacion: autenticacionPersona,
+          token: idToken
+        } : '';
+        tipoPS === 'externo' ? req.personalizado.presentationSolicitante.externo = {
+          autenticacion: autenticacionExterno,
+          identificacion: {
+            publicKey: dataAuth.publicKey,
+            timestamp: dataAuth.timestamp,
+            signature: dataAuth.signature,
+          }
+        } : '';
       }
 
       next();

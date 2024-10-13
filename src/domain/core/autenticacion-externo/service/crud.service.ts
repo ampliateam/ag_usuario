@@ -4,7 +4,7 @@ import {
     CrearAutenticacionExternoDTO,
     BuscarAutenticacionExternoDTO
 } from '../dto';
-import * as repository from '../repository/algo';
+import * as repository from '../repository/cloud-firestore';
 
 export const crear = async (dto: CrearAutenticacionExternoDTO): Promise<IAutenticacionExterno> => {
     return await repository.crud.crear(dto);

@@ -45,7 +45,7 @@ export const cargarEndpoints = (app: any, routesPath: string) => {
       });
 
       // Registrar la ruta principal de la sección
-      app.use(`/${section}`, router);
+      app.use(`/v1/${section}`, router);
     }
   });
 };

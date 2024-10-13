@@ -15,12 +15,12 @@ const manejadorDeError = manejadorDeErrorFirebaseFirestore;
 export const crear = async (dto: CrearUsuarioDTO): Promise<IUsuario> => {
   try {
     // Verificar datos requeridos [VERIFICACION-MODELO]
-    if (!dto.usuario.uid || !dto.usuario.correo || !dto.usuario.codigo || !dto.usuario.nombre) {
+    if (!dto.usuario.uid || !dto.usuario.correo || !dto.usuario.codigo) {
       throw generarErrorCapaDomain({
         estado: 409,
         codigo: 'datos_invalidos',
-        mensajeServidor: `Se necesita [uid], [correo], [codigo] y [nombre] para crear un usuario.`,
-        mensajeCliente: `Se necesita [uid], [correo], [codigo] y [nombre] para crear un usuario.`,
+        mensajeServidor: `Se necesita [uid], [correo] y [codigo] para crear un usuario.`,
+        mensajeCliente: `Se necesita [uid], [correo] y [codigo] para crear un usuario.`,
         resultado: null
       });
     }
@@ -37,7 +37,7 @@ export const crear = async (dto: CrearUsuarioDTO): Promise<IUsuario> => {
       correo: dto.usuario.correo,
       codigo: dto.usuario.codigo,
       correoVerificado: dto.usuario.correoVerificado ?? false,
-      nombre: dto.usuario.nombre,
+      nombre: dto.usuario.nombre || dto.usuario.codigo,
       telefono: dto.usuario.telefono || '',
       fotoPerfil: dto.usuario.fotoPerfil || '',
       rol: dto.usuario.rol && dto.usuario.rol.length ? dto.usuario.rol : ['miembro'],

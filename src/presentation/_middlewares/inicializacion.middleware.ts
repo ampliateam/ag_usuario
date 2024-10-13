@@ -6,6 +6,7 @@ export const inicializacion = async (req: Request, res: Response, next: NextFunc
     req.personalizado = {
       momentoSolicitud: new Date(),
       presentationSolicitante: { tipo: 'desconocido' },
+      extra: {},
     };
 
     // Verificar datos provenientes del cliente
