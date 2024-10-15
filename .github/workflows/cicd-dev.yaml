@@ -5,7 +5,7 @@ env:
   REGION: southamerica-east1
   SERVICE_NAME: ag_usuario
   PROJECT_ID: agendalia-dev
-  DOCKER_IMAGE_URL: southamerica-east1-docker.pkg.dev/agendalia-dev/ag_usuario/ag_usuario
+  DOCKER_IMAGE_URL: southamerica-east1-docker.pkg.dev/agendalia-dev/ag-usuario/ag_usuario
 
 on:
   push:
