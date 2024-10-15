@@ -1,24 +1,19 @@
-import { IAutenticacionExterno } from '@global/models/interfaces';
+import { IAutenticacionExterno } from '@global/models/ag_usuario';
 import {
     ActualizarAutenticacionExternoDTO,
     CrearAutenticacionExternoDTO,
-    EliminarAutenticacionExternoDTO,
     BuscarAutenticacionExternoDTO
 } from '../dto';
-import * as autenticacionExternoRepository from '../repository';
+import * as repository from '../repository/cloud-firestore';
 
 export const crear = async (dto: CrearAutenticacionExternoDTO): Promise<IAutenticacionExterno> => {
-    return await autenticacionExternoRepository.algo.crud.crear(dto);
+    return await repository.crud.crear(dto);
 }
 
 export const obtener = async (dto: BuscarAutenticacionExternoDTO): Promise<IAutenticacionExterno> => {
-    return await autenticacionExternoRepository.algo.crud.obtener(dto);
+    return await repository.crud.obtener(dto);
 }
 
 export const actualizar = async (dto: ActualizarAutenticacionExternoDTO): Promise<IAutenticacionExterno> => {
-    return await autenticacionExternoRepository.algo.crud.actualizar(dto);
-}
-
-export const eliminar = async (dto: EliminarAutenticacionExternoDTO): Promise<IAutenticacionExterno> => {
-    return await autenticacionExternoRepository.algo.crud.eliminar(dto);
+    return await repository.crud.actualizar(dto);
 }

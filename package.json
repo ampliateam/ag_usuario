@@ -1,6 +1,7 @@
 {
   "name": "ag_usuario",
   "scripts": {
+    "build": "tsc",
     "dev": "nodemon",
     "test": "cross-env MODO_TEST=true jest",
     "start:dev": "",
@@ -10,12 +11,13 @@
   "engines": {
     "node": "18"
   },
-  "main": "dist/index.js",
+  "main": "dist/presentation/index.js",
   "dependencies": {
     "ag_usuario": "file:",
     "axios": "^1.7.7",
     "class-validator": "^0.14.1",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "firebase-admin": "^11.11.0",

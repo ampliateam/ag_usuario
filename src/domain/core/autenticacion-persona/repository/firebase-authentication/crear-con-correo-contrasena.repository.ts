@@ -1,7 +1,10 @@
-import { IAutenticacionPersona } from '@global/models/interfaces';
+import { IAutenticacionPersona } from '@global/models/ag_usuario';
 import { firebaseAuthentication } from '@domain/_connections/firebase';
 import { userRecordToAutenticacionPersona } from '@domain/_helpers';
-import { generarErrorCapaDomain, manejadorDeErrorFirebaseAuthentication } from '@domain/_helpers/errors';
+import {
+  generarErrorCapaDomain,
+  manejadorDeErrorFirebaseAuthentication
+} from '@domain/_errors';
 import { CrearConCorreoContrasenaDTO } from '../../dto';
 
 export const crearConCorreoContrasena = async (dto: CrearConCorreoContrasenaDTO): Promise<IAutenticacionPersona> => {
@@ -24,7 +27,8 @@ const middleware = (dto: CrearConCorreoContrasenaDTO) => {
     throw generarErrorCapaDomain({
       estado: 409,
       codigo: 'datos_invalidos',
-      mensaje: 'Se necesita [correo] y [contrasena] para crear un usuario.',
+      mensajeServidor: 'Se necesita [correo] y [contrasena] para crear un usuario.',
+      mensajeCliente: 'Se necesita [correo] y [contrasena] para crear un usuario.',
       resultado: null,
     });
   }
@@ -34,7 +38,8 @@ const middleware = (dto: CrearConCorreoContrasenaDTO) => {
     throw generarErrorCapaDomain({
       estado: 409,
       codigo: 'error_tipo_de_dato',
-      mensaje: 'El correo tiene que ser [string].',
+      mensajeServidor: 'El correo tiene que ser [string].',
+      mensajeCliente: 'El correo tiene que ser [string].',
       resultado: null,
     });
   }
@@ -43,7 +48,8 @@ const middleware = (dto: CrearConCorreoContrasenaDTO) => {
     throw generarErrorCapaDomain({
       estado: 409,
       codigo: 'error_tipo_de_dato',
-      mensaje: 'El correo tiene que ser [string].',
+      mensajeServidor: 'El correo tiene que ser [string].',
+      mensajeCliente: 'El correo tiene que ser [string].',
       resultado: null,
     });
   }

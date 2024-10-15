@@ -5,7 +5,7 @@ describe('CRUD - UsaurioPersona', () => {
     const correo = 'developerprogrammer1617@gmail.com';
     
     test.skip('Crear', async () => {
-        const nuevo = await services.core.usuarioPersona.crud.crear({
+        const nuevo = await services.core.usuario.crud.crear({
             usuario: {
                 uid,
                 correo,
@@ -29,7 +29,7 @@ describe('CRUD - UsaurioPersona', () => {
     });
 
     test.skip('Obtener', async () => {
-        const obj = await services.core.usuarioPersona.crud.obtener({ correo });
+        const obj = await services.core.usuario.crud.obtener({ correo });
 
         expect(obj.uid).toEqual(uid);
         expect(obj.correo).toEqual(correo);
@@ -39,7 +39,7 @@ describe('CRUD - UsaurioPersona', () => {
     });
     
     test.skip('Actualizar', async () => {
-        const actualizado = await services.core.usuarioPersona.crud.actualizar({
+        const actualizado = await services.core.usuario.crud.actualizar({
             buscarPor: { correo },
             actualizado: {
                 nombre: 'El developer',
@@ -55,12 +55,12 @@ describe('CRUD - UsaurioPersona', () => {
     });
 
     test.skip('Eliminar', async () => {
-        const obj = await services.core.usuarioPersona.crud.obtener({ correo });
-        const eliminado = await services.core.usuarioPersona.eliminarLogicamente({
+        const obj = await services.core.usuario.crud.obtener({ correo });
+        const eliminado = await services.core.usuario.eliminarLogicamente({
             buscarPor: { uid: obj.uid },
             fechaEliminacion: new Date(),
         });
-        const eliminado2 = await services.core.usuarioPersona.crud.obtener({ correo });
+        const eliminado2 = await services.core.usuario.crud.obtener({ correo });
 
         expect(eliminado).toBeTruthy();
         expect(eliminado2).toBeFalsy();
