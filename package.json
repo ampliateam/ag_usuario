@@ -1,6 +1,7 @@
 {
   "name": "ag_usuario",
   "scripts": {
+    "build": "tsc",
     "dev": "nodemon",
     "test": "cross-env MODO_TEST=true jest",
     "start:dev": "",
@@ -10,7 +11,7 @@
   "engines": {
     "node": "18"
   },
-  "main": "dist/index.js",
+  "main": "dist/presentation/index.js",
   "dependencies": {
     "ag_usuario": "file:",
     "axios": "^1.7.7",
