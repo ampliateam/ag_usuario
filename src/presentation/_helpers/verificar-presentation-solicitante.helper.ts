@@ -1,8 +1,8 @@
-import { TPresentationSolicitanteTipo } from '@presentation/_models/types';
 import { generarErrorCapaPresentation } from '../_errors';
 import { services } from '@domain/services';
+import { ICredencialUsuario } from '@global/models/_system';
 
-export const verificarPresentationSolicitante = async (psTipo: TPresentationSolicitanteTipo, dataAuth: any) => {
+export const verificarPresentationSolicitante = async (cu: ICredencialUsuario) => {
   const respuesta = {
     usuario: null,
     autenticacionPersona: null,
@@ -10,9 +10,9 @@ export const verificarPresentationSolicitante = async (psTipo: TPresentationSoli
   };
 
   // Verificacion para caso de cliente desconocido
-  if (psTipo === 'persona') {
-    const { token } = dataAuth;
-    
+  if (cu.tipo === 'persona') {
+    const { token } = cu.persona;
+
     // Verificaciones para caso de cliente persona/externo
     if (!token) {
       throw generarErrorCapaPresentation({
@@ -23,7 +23,7 @@ export const verificarPresentationSolicitante = async (psTipo: TPresentationSoli
         resultado: null,
       });
     }
-    
+
     const tokenDecodificadoPersona = await services.core.autenticacionPersona.verificarToken(token);
     const autenticacionPersona = await services.core.autenticacionPersona.crud.obtener({
       uid: tokenDecodificadoPersona.uid
@@ -34,15 +34,16 @@ export const verificarPresentationSolicitante = async (psTipo: TPresentationSoli
 
     respuesta.autenticacionPersona = autenticacionPersona;
     respuesta.usuario = usuario;
-  } else if (psTipo === 'externo') {
-    const { publicKey, timestamp, signature } = dataAuth;
+  } else if (cu.tipo === 'externo') {
+    const { publicKey, timestamp, signature } = cu.externo;
 
-    if (timestamp >= Date.now()) {
+    // Verificaciones para caso de cliente persona/externo
+    if (!publicKey || !timestamp || !signature) {
       throw generarErrorCapaPresentation({
         estado: 401,
         codigo: 'no_autorizado',
-        mensajeServidor: 'El valor del `timestamp` tiene que ser menor al momento de la solicitud.',
-        mensajeCliente: `No autorizado.`,
+        mensajeServidor: `Se requiere publicKey, timestamp y signature para realizar la operación.`,
+        mensajeCliente: `Se requieren las credenciales de externo para realizar la operación.`,
         resultado: null,
       });
     }

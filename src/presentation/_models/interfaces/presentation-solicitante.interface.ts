@@ -1,3 +1,4 @@
+import { ICredencialUsuario } from '@global/models/_system';
 import {
   // Usuarios
   IUsuario,
@@ -5,21 +6,10 @@ import {
   IAutenticacionExterno,
   IAutenticacionPersona,
 } from '@global/models/ag_usuario';
-import { TPresentationSolicitanteTipo } from '@presentation/_models/types';
 
 export interface IPresentationSolicitante {
-  tipo: TPresentationSolicitanteTipo;
+  cu: ICredencialUsuario,
   usuario?: IUsuario
-  persona?: {
-    autenticacion: IAutenticacionPersona,
-    token: string;
-  };
-  externo?: {
-    autenticacion: IAutenticacionExterno,
-    identificacion: {
-      publicKey: string,
-      timestamp: number,
-      signature: string,
-    },
-  };
+  autenticacionPersona?: IAutenticacionPersona,
+  autenticacionExterno?: IAutenticacionExterno,
 };
