@@ -1,9 +1,9 @@
 name: Deploy to Cloud Run
 
 env:
-  SERVICE_NAME: custom-fastapi-service
-  PROJECT_ID: h-t-d-a-f-a-t-g-c-r
-  DOCKER_IMAGE_URL: southamerica-east1-docker.pkg.dev/h-t-d-a-f-a-t-g-c-r/custom-fastapi/custom-fastapi
+  SERVICE_NAME: ag_usuario
+  PROJECT_ID: agendalia-dev
+  DOCKER_IMAGE_URL: southamerica-east1-docker.pkg.dev/agendalia-dev/ag_usuario/ag_usuario
 
 on:
   push:
