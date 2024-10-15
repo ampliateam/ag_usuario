@@ -1,6 +1,8 @@
 name: Deploy to Cloud Run
 
 env:
+  ENVIRONMENT: dev
+  REGION: southamerica-east1
   SERVICE_NAME: ag_usuario
   PROJECT_ID: agendalia-dev
   DOCKER_IMAGE_URL: southamerica-east1-docker.pkg.dev/agendalia-dev/ag_usuario/ag_usuario
@@ -32,11 +34,11 @@ jobs:
 
       - name: Configure Docker
         run: |
-          gcloud auth configure-docker southamerica-east1-docker.pkg.dev
+          gcloud auth configure-docker ${{ REGION }}-docker.pkg.dev
 
       - name: Build and Push Docker Image
         run: |
-          docker build -t ${{ env.DOCKER_IMAGE_URL }}:latest -f Dockerfile.prod .
+          docker build -t ${{ env.DOCKER_IMAGE_URL }}:latest -f Dockerfile.${{ ENVIRONMENT }} .
           docker push ${{ env.DOCKER_IMAGE_URL }}:latest
 
       - name: Deploy to Cloud Run
@@ -45,5 +47,5 @@ jobs:
           gcloud run deploy $SERVICE_NAME \
             --image ${{ env.DOCKER_IMAGE_URL }}:latest \
             --platform managed \
-            --region us-east1 \
+            --region ${{ REGION }} \
             --allow-unauthenticated
