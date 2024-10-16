@@ -19,13 +19,13 @@
             "@domain/*": ["src/domain/*"],
             "@global/*": ["src/global/*"],
             "@presentation/*": ["src/presentation/*"]
-        }
+        },
+        "plugins": [{ "transform": "typescript-transform-paths" }] 
     },
     "compileOnSave": true,
     "include": ["src"],
-    "exclude": [
-        "node_modules",
-        "dist",
-        "domain/*/_test"
-    ]
+    "exclude": [],
+    "ts-node": {
+        "require": ["tsconfig-paths/register"]
+    }
 }

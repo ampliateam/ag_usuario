@@ -1,6 +1,10 @@
+import { envs } from '@global/configs/envs';
 import { Router } from 'express';
 import fs from 'fs';
 import path from 'path';
+
+const isPersonal = envs.environment === 'personal'; // Detecta si es entorno de desarrollo
+const fileExtension = isPersonal ? '.ts' : '.js'; // Usar .ts en desarrollo y .js en producción
 
 /** 
  * Solo es de un solo nivel, ejemplo:
@@ -24,8 +28,8 @@ export const cargarEndpoints = (app: any, routesPath: string) => {
     if (fs.statSync(sectionPath).isDirectory()) {
       const router = Router();
 
-      // Cargar el archivo index.ts de la sección
-      const sectionIndexPath = path.join(sectionPath, 'index.ts');
+      // Cargar el archivo index.ts o index.js dependiendo del entorno
+      const sectionIndexPath = path.join(sectionPath, `index${fileExtension}`);
       if (fs.existsSync(sectionIndexPath)) {
         const sectionIndexRouter = require(sectionIndexPath).default;
         router.use('/', sectionIndexRouter);
@@ -34,11 +38,11 @@ export const cargarEndpoints = (app: any, routesPath: string) => {
       // Cargar las funciones adicionales dentro de la sección
       const files = fs.readdirSync(sectionPath);
       files.forEach((file) => {
-        if (file !== 'index.ts') {
+        if (file !== `index${fileExtension}`) {
           const functionPath = path.join(sectionPath, file);
-          if (fs.statSync(functionPath).isFile() && functionPath.endsWith('.ts')) {
+          if (fs.statSync(functionPath).isFile() && functionPath.endsWith(fileExtension)) {
             const functionRouter = require(functionPath).default;
-            const functionName = file.replace('.ts', '');
+            const functionName = file.replace(fileExtension, '');
             router.use(`/${functionName}`, functionRouter);
           }
         }
