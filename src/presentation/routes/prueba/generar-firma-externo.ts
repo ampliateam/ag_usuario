@@ -17,7 +17,7 @@ if (envs.environment === 'personal') {
           .update(dataToSign)
           .digest('hex');
   
-        res.json({
+        res.status(200).json({
           publicKey: req.body.clavePublica,
           timestamp: req.body.timestamp || timestamp,
           signature
