@@ -5,6 +5,13 @@ import { envs } from '@global/configs/envs';
 
 const router = Router();
 
+router.get('/',
+  mwVerificarPS(),
+  (req, res, next) => {
+    res.status(200).send('Feliz previa de cumple amor! <3\nLo estamos logrando!');
+  }
+)
+
 if (envs.environment === 'personal') {
   router.post('/',
     mwVerificarPS({}),
@@ -17,7 +24,7 @@ if (envs.environment === 'personal') {
           .update(dataToSign)
           .digest('hex');
   
-        res.json({
+        res.status(200).json({
           publicKey: req.body.clavePublica,
           timestamp: req.body.timestamp || timestamp,
           signature
