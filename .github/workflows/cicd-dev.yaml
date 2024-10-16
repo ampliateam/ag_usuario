@@ -23,6 +23,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Ensure running on dev branch
+        run: |
+          if [ "${{ github.ref }}" != "refs/heads/${{ env.ENVIRONMENT }}" ]; then
+            echo "Este workflow solo puede correr en la rama [${{ env.ENVIRONMENT }}]."
+            exit 1
+          fi
+
       - name: Google Cloud Auth
         uses: 'google-github-actions/auth@v2'
         with:
