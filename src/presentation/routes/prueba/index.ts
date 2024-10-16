@@ -6,7 +6,7 @@ const router = Router();
 router.get('/te-amo',
   mwVerificarPS(),
   (req, res, next) => {
-    res.status(200).send('Feliz previa de cumple amor! <3\nLo estamos logrando!');
+    res.send('Feliz previa de cumple amor! <3\nLo estamos logrando!');
   }
 )
 
