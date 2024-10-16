@@ -4,9 +4,9 @@
     "build": "tsc",
     "dev": "nodemon",
     "test": "cross-env MODO_TEST=true jest",
-    "start:dev": "",
-    "start:test": "",
-    "start:prod": ""
+    "start:dev": "node dist/presentation/index.js",
+    "start:test": "node dist/presentation/index.js",
+    "start:prod": "node dist/presentation/index.js"
   },
   "engines": {
     "node": "18"

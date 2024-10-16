@@ -10,4 +10,4 @@ FROM base AS builder
 
 FROM builder AS runner
   COPY --from=builder ./app/dist ./dist
-  CMD ["npm", "run", "start:prod"]
+  CMD ["npm", "run", "start:dev"]
