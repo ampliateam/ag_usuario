@@ -3,9 +3,9 @@ name: Deploy to Cloud Run
 env:
   ENVIRONMENT: dev
   REGION: southamerica-east1
-  SERVICE_NAME: ag_usuario
+  SERVICE_NAME: ag-usuario
   PROJECT_ID: agendalia-dev
-  DOCKER_IMAGE_URL: southamerica-east1-docker.pkg.dev/agendalia-dev/ag-usuario/ag_usuario
+  DOCKER_IMAGE_URL: southamerica-east1-docker.pkg.dev/agendalia-dev/ag-usuario/ag-usuario
 
 on:
   push:
