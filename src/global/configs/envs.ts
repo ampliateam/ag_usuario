@@ -14,6 +14,7 @@ export const envs = {
     dockerPortInterno: process.env.DOCKER_PORT_INTERNO,
     environment: process.env.ENVIRONMENT as EnvironmentPermitido,
     secretKeyTokenCambioContrasena: process.env.SECRET_KEY_TOKEN_CAMBIO_CONTRASENA,
+    firebaseCredentials: process.env.FIREBASE_CREDENTIALS,
 };
 
 if (envs.modoTest && envs.environment !== 'personal') {
